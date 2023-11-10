@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="tp_integrador_zombie" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="bin/Debug/tp_integrador_zombie" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Debug/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+					<Add directory="include" />
+				</Compiler>
+			</Target>
+			<Target title="Release">
+				<Option output="bin/Release/tp_integrador_zombie" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+					<Add directory="include" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+			<Add option="-fexceptions" />
+			<Add directory="SFML/include" />
+		</Compiler>
+		<Linker>
+			<Add library="SFML/lib/libsfml-graphics.a" />
+			<Add library="SFML/lib/libsfml-system.a" />
+			<Add library="SFML/lib/libsfml-window.a" />
+			<Add library="SFML/lib/libsfml-audio.a" />
+			<Add library="SFML/lib/libsfml-audio-d.a" />
+			<Add library="SFML/lib/libsfml-audio-s.a" />
+			<Add library="SFML/lib/libsfml-audio-s-d.a" />
+			<Add directory="SFML/lib" />
+		</Linker>
+		<Unit filename="include/Audio.h" />
+		<Unit filename="include/Colisionable.h" />
+		<Unit filename="include/Creditos.h" />
+		<Unit filename="include/DISPARO.h" />
+		<Unit filename="include/EnergyBar.h" />
+		<Unit filename="include/Funciones.h" />
+		<Unit filename="include/GAME_PLAY.h" />
+		<Unit filename="include/GESTOR_DISPAROS.h" />
+		<Unit filename="include/GESTOR_PLANTAS.h" />
+		<Unit filename="include/Lifebar.h" />
+		<Unit filename="include/MENU_PRINCIPAL.h" />
+		<Unit filename="include/Menu_game_over.h" />
+		<Unit filename="include/Menu_winer.h" />
+		<Unit filename="include/PLANTA.h" />
+		<Unit filename="include/PLATAFORMA.h" />
+		<Unit filename="include/PlantManager.h" />
+		<Unit filename="include/Player.h" />
+		<Unit filename="include/Prize.h" />
+		<Unit filename="include/Seleccion_de_zombie.h" />
+		<Unit filename="include/ShootManager.h" />
+		<Unit filename="include/SubMenu.h" />
+		<Unit filename="include/ZOMBIE.h" />
+		<Unit filename="main.cpp" />
+		<Unit filename="src/Audio.cpp" />
+		<Unit filename="src/Colisionable.cpp" />
+		<Unit filename="src/Creditos.cpp" />
+		<Unit filename="src/DISPARO.cpp" />
+		<Unit filename="src/EnergyBar.cpp" />
+		<Unit filename="src/GAME_PLAY.cpp" />
+		<Unit filename="src/GESTOR_DISPAROS.cpp" />
+		<Unit filename="src/GESTOR_PLANTAS.cpp" />
+		<Unit filename="src/Ingreso_de_nombre.cpp" />
+		<Unit filename="src/Juego.cpp" />
+		<Unit filename="src/Lifebar.cpp" />
+		<Unit filename="src/MENU_PRINCIPAL.cpp" />
+		<Unit filename="src/Menu_game_over.cpp" />
+		<Unit filename="src/Menu_winer.cpp" />
+		<Unit filename="src/PLANTA.cpp" />
+		<Unit filename="src/PLATAFORMA.cpp" />
+		<Unit filename="src/PlantManager.cpp" />
+		<Unit filename="src/Player.cpp" />
+		<Unit filename="src/Prize.cpp" />
+		<Unit filename="src/Seleccion_de_zombie.cpp" />
+		<Unit filename="src/ShootManager.cpp" />
+		<Unit filename="src/SubMenu.cpp" />
+		<Unit filename="src/ZOMBIE.cpp" />
+		<Extensions>
+			<lib_finder disable_auto="1" />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>
