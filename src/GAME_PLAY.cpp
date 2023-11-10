@@ -111,8 +111,9 @@ GAME_PLAY::~GAME_PLAY()
     //dtor
 }
 
-
-
+/*
+cambios git
+*/
 void GAME_PLAY::draw(sf::RenderWindow& window)
 {
     ///Dibujo Zombie///
