@@ -18,9 +18,9 @@ MENU_PRINCIPAL::MENU_PRINCIPAL(float width, float height)
     menu_p[0].setPosition(sf::Vector2f(width/2.08,height/5*1.2));
 
     menu_p[1].setFont(font_item);
-    menu_p[1].setString("ESTADISTICA");
+    menu_p[1].setString("RANKING");
     menu_p[1].setColor(sf::Color(255,255,255,80));
-    menu_p[1].setPosition(sf::Vector2f(width/2.3,height/5*1.7));
+    menu_p[1].setPosition(sf::Vector2f(width/2.17,height/5*1.7));
 
     menu_p[2].setFont(font_item);
     menu_p[2].setString("REGLAMENTO");
@@ -82,7 +82,7 @@ void MENU_PRINCIPAL::down()
         menu_p[seleccion_item].setColor(sf::Color::Green);
     }
 }
-
+/*
 void MENU_PRINCIPAL::Opciones()
 {
     sf::RenderWindow window(sf::VideoMode(1220, 800), "Zombies vs PlantaZ");
@@ -95,8 +95,6 @@ void MENU_PRINCIPAL::Opciones()
     Audio Sound_3c(3);
     // *******************Titulo**********************
     sf::Font font;
-
-
 
 
     if (!font.loadFromFile("Font/Riot Act 2.otf"))
@@ -135,12 +133,13 @@ void MENU_PRINCIPAL::Opciones()
                         sub_menu.Opciones();
                         break;
                     case 1:
-                        std::cout << "ESTADISTICA" << std::endl;
+                        std::cout << "RANKING" << std::endl;
 
                         break;
                     case 2:
                         std::cout << "REGLAMENTO" << std::endl;
-
+                        window.close();
+                        ///reglamento()
                         break;
                     case 3:
                         std::cout << "CRÉDITO" << std::endl;
@@ -174,6 +173,5 @@ void MENU_PRINCIPAL::Opciones()
 
         window.display();
     }
-
-
 }
+*/

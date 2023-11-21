@@ -12,8 +12,8 @@
 
 
 
-//int numeroZombie = 0;
-void Juego(int num_zombie)
+int numeroZombie = 0;
+void Juego()
 {
     sf::RenderWindow window(sf::VideoMode(1220, 800), "Zombies vs PlantaZ");
     window.setFramerateLimit(60);
@@ -29,7 +29,7 @@ void Juego(int num_zombie)
     }
     fondo.setTexture(_fondo);
 
-    GAME_PLAY gp(num_zombie);
+    Game_play gp;
     Menu_game_over menu_GO(1220,800);
     Audio musica(1);
     Menu_winer menu_win(1220,800);
@@ -89,14 +89,12 @@ void Juego(int num_zombie)
 
     }
 }
-/*
+
 int seleccionZombie(int numero)
 {
     numeroZombie = numero;
 }
-
 int getZombie()
 {
     return numeroZombie;
 }
-*/

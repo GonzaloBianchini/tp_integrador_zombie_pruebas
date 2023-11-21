@@ -81,7 +81,7 @@ void Menu_game_over::right()
         menu_GO[seleccion_item].setColor(sf::Color::Green);
     }
 }
-
+/*
 void Menu_game_over::Opciones()
 {
     sf::RenderWindow window(sf::VideoMode(1220, 800), "Zombies vs PlantaZ");
@@ -155,3 +155,4 @@ Audio Sound_3d(3);
 
 
 }
+*/

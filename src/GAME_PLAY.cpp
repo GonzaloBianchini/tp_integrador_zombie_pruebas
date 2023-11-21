@@ -1,7 +1,9 @@
-#include "GAME_PLAY.h"
 #include <iostream>
 
-GAME_PLAY::GAME_PLAY(int n) //:selec_zom(1220,800), Z1(getZombie(),_shoot_manager), Sound_4(4), Sound_5(5), Sound_7(7)//: Z1(_shoot_manager)
+#include "Game_play.h"
+#include "Partida.h"
+
+Game_play::Game_play(Player& player, int numZombie,sf::RenderWindow& window) : Sound_4(4), Sound_5(5), Sound_7(7)
 {
     _estado=ESTADOS_GAME_PLAY::ACTION;
 
@@ -18,11 +20,6 @@ GAME_PLAY::GAME_PLAY(int n) //:selec_zom(1220,800), Z1(getZombie(),_shoot_manage
     //2do nivel plats
 
 
-    /*Plats[7].getDraw().setPosition(190,270);    //1era
-    Plats[8].getDraw().setPosition(370,270);    //2da
-    Plats[9].getDraw().setPosition(430,270);    //2da
-    Plats[10].getDraw().setPosition(680,270);*/   //3ra
-   // Plats[11].getDraw().setPosition(710,270);   //3ra
     Plats[7].getDraw().setPosition(70,270);    //1era
     Plats[8].getDraw().setPosition(240,270);    //2da
     Plats[9].getDraw().setPosition(300,270);    //2da
@@ -60,15 +57,16 @@ GAME_PLAY::GAME_PLAY(int n) //:selec_zom(1220,800), Z1(getZombie(),_shoot_manage
 
     std::shuffle(_position.begin(), _position.end(), g);
 
-    _plant_spawn_timer.restart();
 
+    _plant_spawn_timer.restart();
+    numeroZombie = numZombie;
+    Z1=new Zombie(numZombie,_shoot_manager);
+    _namePlayer = player.getNombre();
     _is_dead=false;
-    numeroZombie=n;
-    Z1=new ZOMBIE(n,_shoot_manager);
-    //disparoZombie = new Disparo(TIPO::BRAIN, {400,400}, false);
+
 
     /*****************NOMBRE DE JUGADOR   **************/
-    _namePlayer = getNombre();
+
     if (!_fontPlayer.loadFromFile("font/BITWA___.ttf"))
     {
         std::cout<<"Error al cargar texto"<<std::endl;
@@ -106,15 +104,12 @@ GAME_PLAY::GAME_PLAY(int n) //:selec_zom(1220,800), Z1(getZombie(),_shoot_manage
 
 }
 
-GAME_PLAY::~GAME_PLAY()
+Game_play::~Game_play()
 {
     //dtor
 }
 
-/*
-cambios git
-*/
-void GAME_PLAY::draw(sf::RenderWindow& window)
+void Game_play::draw(sf::RenderWindow& window)
 {
     ///Dibujo Zombie///
     window.draw(Z1->getDraw());
@@ -125,17 +120,14 @@ void GAME_PLAY::draw(sf::RenderWindow& window)
         window.draw(*p);
     }
 
-    /* for(auto p : _plant_manager._array_plantas)
-     {
-         window.draw(p.getDraw());
-     }*/
+
     ///Dibujo Disparos///
     for(auto disparo : _shoot_manager._array_disparos)
     {
         window.draw(*disparo);
     }
     ///Dibujo Plataformas///
-    for(PLATAFORMA& Plat_1: Plats)
+    for(Plataforma& Plat_1: Plats)
     {
         window.draw(Plat_1.getDraw());
     }
@@ -144,8 +136,6 @@ void GAME_PLAY::draw(sf::RenderWindow& window)
     {
         window.draw(*_prize);
     }
-
-
 
 
     ///Dibujo elementos varios///
@@ -160,7 +150,7 @@ void GAME_PLAY::draw(sf::RenderWindow& window)
 }
 
 
-void GAME_PLAY::cmd()
+void Game_play::cmd()
 {
 
     if(_estado==ESTADOS_GAME_PLAY::ACTION)//SE EJECUTA SI EL JUEGO NO ESTÁ EN PAUSA
@@ -195,10 +185,10 @@ void GAME_PLAY::cmd()
     }
 }
 /////////////////////////////
-void GAME_PLAY::check_collision_platform()
+void Game_play::check_collision_platform()
 {
 
-    for(PLATAFORMA& Plat_1: Plats)
+    for(Plataforma& Plat_1: Plats)
     {
         if(Z1->getDraw().getGlobalBounds().intersects(Plat_1.getDraw().getGlobalBounds())&&Z1->getjump_force()<0)
         {
@@ -214,34 +204,9 @@ void GAME_PLAY::check_collision_platform()
 
     }
 }
-///////////////////////////////////////
-/*void GAME_PLAY::updatePlants()
-{
-    for(auto it=_array_plantas.begin(); it!=_array_plantas.end();)   //inicio el iterador IT en el principio del array y recorro hasta el final de array
-    {
-        Planta* planta = *it;       //defino el puntero a PLANTA llamado planta y apunta igual que IT, sera el objeto a actualizar y/o borrar
-        planta->update();
-        //chequeo colision zombie-planta
-        if(Z1.isCollision(*planta))
-        {
-            _life_bar.setLifePoints(_life_bar.getLifePoints() - 1);
 
-            delete planta;                  //libera memoria del objeto planta, pero ojo! el puntero planta aun tiene la direccion
-            //de memoria del objeto eliminado, es decir, el objeto esta en la lista pero no es valido.
-            it=_array_plantas.erase(it);    //con esto elimino completamente de la lista y el iterador IT queda apuntando al siguiente elemento
 
-        }
-        else
-        {
-            ++it;                           //Si no se elimina el enemigo, avanza al siguiente elemento
-        }
-
-    }
-}*/
-
-///////////////////////////////////////
-
-void GAME_PLAY::updateShoot(sf::RenderTarget& window)
+void Game_play::updateShoot(sf::RenderTarget& window)
 {
 
     for(auto it=_shoot_manager._array_disparos.begin(); it!=_shoot_manager._array_disparos.end();)
@@ -256,7 +221,8 @@ void GAME_PLAY::updateShoot(sf::RenderTarget& window)
             if(Z1->isCollision(*disp)&& tipoDisparo != TIPO::BRAIN)
             {
                 _life_bar.setLifePoints(_life_bar.getLifePoints() - 1);
-                //Sound_5.audioON();
+
+                Sound_5.audioON();
             }
 
             delete disp;
@@ -296,7 +262,7 @@ void GAME_PLAY::updateShoot(sf::RenderTarget& window)
         }
         if(colisionPlanta)
         {
-            //Sound_7.audioON();
+            Sound_7.audioON();
             enemigos_eliminados++;
             it =_plant_manager._array_plantas.erase(it);
             delete planta;
@@ -311,7 +277,7 @@ void GAME_PLAY::updateShoot(sf::RenderTarget& window)
 
 ///////////////////////////////////////
 
-void GAME_PLAY::updatePrize()
+void Game_play::updatePrize()
 {
 
     if(!_prize_generated)   //pregunto y entro si no hay premio generado
@@ -331,7 +297,7 @@ void GAME_PLAY::updatePrize()
             {
                 _life_bar.setLifePoints(_life_bar.getLifePoints() + 1);
                 puntaje+=500;
-                //Sound_4.audioON();
+                Sound_4.audioON();
             }
             _prize_generated=false;
             _prize_timer.restart();
@@ -341,7 +307,7 @@ void GAME_PLAY::updatePrize()
 }
 //////////////////////////////////
 
-void GAME_PLAY::update(sf::RenderTarget& window)
+void Game_play::update(sf::RenderTarget& window)
 {
     if(_game_over==false)
     {
@@ -352,9 +318,9 @@ void GAME_PLAY::update(sf::RenderTarget& window)
             {
                 if(_life_bar.getLifePoints()<=5&&_life_bar.getLifePoints()>=1)
                 {
-                    //std::cout<<_life_bar.getLifePoints()<<std::endl;
+
                     Z1->update();
-                    //std::cout<<Z1.getvida()<<std::endl;
+
 
                 }
                 else
@@ -365,7 +331,7 @@ void GAME_PLAY::update(sf::RenderTarget& window)
                     }
                     if(_life_bar.getLifePoints()==0&&_dead.getElapsedTime().asSeconds()<1.5)
                     {
-                        //std::cout<<_life_bar.getLifePoints()<<std::endl;
+
                         Z1->update_muriendo();
                         _is_dead=true;
 
@@ -375,8 +341,7 @@ void GAME_PLAY::update(sf::RenderTarget& window)
                     {
 
                         _dead.restart();
-                        // Z1.setvida(1);
-                        //std::cout<<Z1.getvida()<<std::endl;
+
                     }
                 }
 
@@ -392,18 +357,45 @@ void GAME_PLAY::update(sf::RenderTarget& window)
             {
                 vidas=Z1->getvida();
                 _game_over=false;
-
             }
-            else
+            else///POR ACA LAS PARTIDAS GONZOO, revisar!
             {
                 vidas=Z1->getvida();
+                Partida partida(puntaje, _namePlayer);
+
+                FILE *pPartida = fopen("Partidas.dat", "ab");
+                    if(pPartida == nullptr)
+                    {
+                        std::cout<< "No se pudo abrir/crear archivo"<< std::endl;
+                    }
+                    fwrite(&partida, sizeof(Partida), 1, pPartida);
+                    fclose(pPartida);
+                    std::cout<< "Archivo creado correctamente"<<std::endl;
                 _game_over=true;
 
             }
+                //std::cout<<"enemi"<< getEnemigos_eliminados();
+                ///WIN CONDITION
+            if(getEnemigos_eliminados() == 10)
+            {
+                //std::cout<<"enemigos"<< getEnemigos_eliminados();
+                puntaje+=3000;
+                Partida partida(puntaje, _namePlayer);
+                FILE *pPartida = fopen("Partidas.dat", "ab");
+                    if(pPartida == nullptr)
+                    {
+                        std::cout<< "No se pudo abrir/crear archivo"<< std::endl;
 
-        //////////////////////////
+                    }
+                    fwrite(&partida, sizeof(Partida), 1, pPartida);
+                    fclose(pPartida);
+                    std::cout<< "Archivo creado correctamente"<<std::endl;
+                _winner= true;
+            }
 
-            //std::cout<<Z1.gettimeshoot()<<std::endl;
+            //////////////////////////
+
+
             if(Z1->gettimeshoot() > 2.0)
             {
                 _energy_bar.setEnergyPoints(5);
@@ -448,7 +440,6 @@ void GAME_PLAY::update(sf::RenderTarget& window)
             updatePrize();
             _life_bar.update();
             _energy_bar.update();
-            //updatePlants();
             updatePlants2();
             updateShoot(window);
 
@@ -474,11 +465,9 @@ void GAME_PLAY::update(sf::RenderTarget& window)
     {
         std::cout<<"GAME OVER!!!"<<std::endl;
     }
-
-
 }
 
-void GAME_PLAY::updatePlants2()
+void Game_play::updatePlants2()
 {
 
     updatePlantGeneration();
@@ -486,14 +475,14 @@ void GAME_PLAY::updatePlants2()
     updatePlantsSelfMovement();
 }
 
-void GAME_PLAY::updatePlantGeneration()
+void Game_play::updatePlantGeneration()
 {
     ///GENERACION DE PLANTAS
 
     _random_type=TIPO(rand() % 4);   //Genero un tipo aleatorio, casteo a TIPO
     bool look=rand()% 2;
 
-    if(_plant_manager._array_plantas.size() <= 6&& enemigos<=20)   //spawneo maximo 4 plantas
+    if(_plant_manager._array_plantas.size() <= 6&& enemigos<=20)   //define la cantidad de plantas en pantalla y condicion de winner
     {
 
         if(_plant_spawn_timer.getElapsedTime().asSeconds() >= 1.5)    //spawneo cada 3 seg
@@ -501,11 +490,14 @@ void GAME_PLAY::updatePlantGeneration()
             _plant_manager.agregarPlanta(new Planta(_random_type,getRandomPosition(),look,_shoot_manager));
             enemigos++;
             _plant_spawn_timer.restart();
+
         }
+
     }
+
 }
 
-void GAME_PLAY::updatePlantDeletion()
+void Game_play::updatePlantDeletion()
 {
     ///DELETEO DE PLANTAS
     ////recorro el array de plantas del gestor y deleteo plantas si corresponde////
@@ -518,10 +510,10 @@ void GAME_PLAY::updatePlantDeletion()
         {
             _life_bar.setLifePoints(_life_bar.getLifePoints() - 1);
             enemigos_eliminados++;
-            //Sound_5.audioON();
+            Sound_5.audioON();
 
             delete planta;                                  //libera memoria del objeto planta, pero ojo! el puntero planta aun tiene la direccion
-                                                            //de memoria del objeto eliminado, es decir, el objeto esta en la lista pero no es valido.
+            //de memoria del objeto eliminado, es decir, el objeto esta en la lista pero no es valido.
             _plant_spawn_timer.restart();                   //Tanto para la generacion como para el deleteo de plantas, reseteo el timer
             it=_plant_manager._array_plantas.erase(it);    //con esto elimino completamente de la lista y el iterador IT queda apuntando al siguiente elemento
         }
@@ -532,35 +524,88 @@ void GAME_PLAY::updatePlantDeletion()
     }
 }
 
-void GAME_PLAY::updatePlantsSelfMovement()
+void Game_play::updatePlantsSelfMovement()
 {
-    PLATAFORMA plataformita;
+
+    sf::FloatRect bounds = Z1->getDraw().getGlobalBounds();
+    Plataforma plataformita;
     for(Planta* plantita : _plant_manager._array_plantas)  //recorro todas las plantas
     {
+
+
         plataformita=findPlatform(*plantita);
-        if(plantita->getPosition().y==500)   //pregunto si esta en el suelo no se mueve y ya
+        if(plantita->getPosition().y==500&&plantita->getPosition().x>bounds.left)   //pregunto si esta en el suelo no se mueve y ya
+        {
             plantita->setCanMove(false);
-        else if(!plantita->isCollision(plataformita))                     //pregunto por si deja de chocar con la plataforma
-            plantita->setLookingLeft(!plantita->isLookingLeft());     //invierto el sentido
+            plantita->setLookingLeft(true);
+        }
+        else
+        {
+            if(plantita->getPosition().y==500&&plantita->getPosition().x<bounds.left)   //pregunto si esta en el suelo no se mueve y ya
+            {
+                plantita->setCanMove(false);
+                plantita->setLookingLeft(false);
+            }
+            else
+            {
+                if(!plantita->isCollision(plataformita))                     //pregunto por si deja de chocar con la plataforma
+                {
+                    plantita->setLookingLeft(!plantita->isLookingLeft());     //invierto el sentido
+                }
+            }
+
+        }
+        if(plantita->getPosition().x>bounds.left&&bounds.left+150>plantita->getPosition().x&&plantita->getPosition().y<bounds.top+20&&plantita->getPosition().y>bounds.top-20&&plantita->getPosition().y!=500)   //pregunto si esta en el suelo no se mueve y ya
+        {
+            plantita->setCanMove(false);
+            plantita->setLookingLeft(true);
+
+            plantita->updateShooting();
+
+        }
+        else
+        {
+            if(plantita->getPosition().x<bounds.left&&bounds.left-150<plantita->getPosition().x&&plantita->getPosition().y<bounds.top+20&&plantita->getPosition().y>bounds.top-20&&plantita->getPosition().y!=500)   //pregunto si esta en el suelo no se mueve y ya
+            {
+                plantita->setCanMove(false);
+                plantita->setLookingLeft(false);
+                plantita->updateShooting();
+
+            }
+            else
+            {
+                if(plantita->getPosition().y!=500)
+                {
+                    plantita->setCanMove(true);
+                }
+
+            }
+        }
     }
 }
 
 
-PLATAFORMA GAME_PLAY::findPlatform(Planta plantita)
+Plataforma Game_play::findPlatform(Planta plantita)
 {
-    for(PLATAFORMA& plat: Plats)
+    for(Plataforma& plat: Plats)
     {
-        if(plantita.isCollision(plat))
+        sf::FloatRect bounds = plat.getDraw().getGlobalBounds();
+
+        if (plantita.getPosition().x >= bounds.left && plantita.getPosition().x <= bounds.left + bounds.width &&
+                plantita.isCollision(plat))
+        {
             return plat;
+        }
     }
     return Plats[0];
 }
 
 
 
-sf::Vector2i GAME_PLAY::getRandomPosition()
+sf::Vector2i Game_play::getRandomPosition()
 {
     sf::Vector2i pos = _position.back();             //elemento que me interesa, el ultimo elemento del vector
+
     _position.insert(_position.begin(),pos);         //pongo al principio del vector el elemento que me interesa
     _position.pop_back();                            //saco el ultimo elemento del array
 
@@ -569,3 +614,11 @@ sf::Vector2i GAME_PLAY::getRandomPosition()
     return pos;
 }
 
+void Game_play::setNombrePlayer(std::string nombre)
+{
+    _namePlayer = nombre;
+}
+bool Game_play::getWinner()
+{
+    return _winner;
+}

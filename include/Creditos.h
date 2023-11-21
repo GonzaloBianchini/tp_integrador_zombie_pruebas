@@ -34,8 +34,6 @@ private:
     sf::Text text[Item_text];
 
 
-
-
 };
 
 #endif // CREDITOS_H

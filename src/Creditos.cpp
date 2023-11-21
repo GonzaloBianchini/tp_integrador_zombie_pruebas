@@ -74,6 +74,7 @@ Creditos::Creditos(float width, float height)
     seleccion_item=0;
 }
 
+
 Creditos::~Creditos()
 {
     //dtor
@@ -114,7 +115,7 @@ void Creditos::right()
     }
 }
 
-
+/*
 void Creditos::Opciones()
 {
     sf::RenderWindow window(sf::VideoMode(1220, 800), "Zombies vs PlantaZ");
@@ -183,3 +184,4 @@ void Creditos::Opciones()
 
 
 }
+*/

@@ -1,12 +1,14 @@
 #ifndef PLANTA_H
 #define PLANTA_H
 
-#include <SFML/Graphics.hpp>
-#include"Colisionable.h"
-#include"DISPARO.h"
-#include "PLATAFORMA.h"
-#include"GESTOR_DISPAROS.h"
 #include <iostream>
+
+#include <SFML/Graphics.hpp>
+
+#include "Colisionable.h"
+#include "Disparo.h"
+#include "Plataforma.h"
+#include "Gestor_disparos.h"
 
 
 /*  //esto lo meto en la clase disparo directamente
@@ -25,14 +27,14 @@ enum TIPO
 class Planta: public Colisionable, public sf::Drawable
 {
 public:
-    Planta(TIPO tipo,sf::Vector2i pos,bool look, GESTOR_DISPAROS& gestor);
+    Planta(TIPO tipo,sf::Vector2i pos,bool look, Gestor_disparos& gestor);
     virtual ~Planta();
 
     void draw(sf::RenderTarget& target,sf::RenderStates states) const override;   //reescribimos el metodo DRAW por haberlo heredado de DRAWABLE
     //sf::Sprite& getDraw();
     sf::FloatRect getBounds() const override;                                     //reescribimos el metodo getBounds por haberlo heredado de COLISIONABLE
-    void escala(float esc);
-    void movement(float x,float y);
+   // void escala(float esc);
+   // void movement(float x,float y);
     bool isLookingLeft();               //devuelve true si la planta mira a la izquierda
     void setLookingLeft(bool look);
     void setCanMove(bool m);
@@ -41,7 +43,6 @@ public:
     void updateMovement();
     void updateAnimation();
     void update();
-
 
 
 
@@ -65,7 +66,7 @@ protected:
     sf::Clock _spawn_shoot_timer;
 
 
-    GESTOR_DISPAROS& _gestor_disparos;      //es una referencia al gestor disparos que gestionara todos los disparos generados por las plantas
+    Gestor_disparos& _gestor_disparos;      //es una referencia al gestor disparos que gestionara todos los disparos generados por las plantas
 
     //PLATAFORMA plataform;
 
@@ -76,7 +77,7 @@ protected:
     void initVariables();
     void initTexture();
     void initAnimation();
-    void initShooting();
+    //void initShooting();
 
 
 };

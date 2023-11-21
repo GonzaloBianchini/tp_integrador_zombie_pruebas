@@ -39,6 +39,7 @@ SubMenu::SubMenu(float width, float height)
 
     _seleccionItem = 0;
 
+
 }
 
 
@@ -81,6 +82,8 @@ void SubMenu::down()
         _subMenu[_seleccionItem].setColor(sf::Color::Green);
     }
 }
+
+/*
 void SubMenu::Opciones() {
 
     sf::RenderWindow window(sf::VideoMode(1220, 800), "Zombies vs PlantaZ");
@@ -132,12 +135,13 @@ void SubMenu::Opciones() {
                     case 0:
                         cout << "Jugar" << endl;
                         window.close();
-                        Juego(0);
+                        Juego();
                         break;
                     case 1:
                         cout << "INGRESAR NOMBRE" << endl;
-                        window.close();
+                        //window.close();
                         ingresoNombre();
+
                         break;
                     case 2:
                         cout << "SELECCIONAR ZOMBIE" << endl;
@@ -168,13 +172,12 @@ void SubMenu::Opciones() {
         Text.setColor(sf::Color::Black);
 
         window.draw(sub_menu);
+
         window.draw(Text);
 
 
 
         window.display();
     }
-
-
-
 }
+*/

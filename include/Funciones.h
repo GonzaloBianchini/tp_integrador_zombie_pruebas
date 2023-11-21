@@ -3,9 +3,9 @@
 #include<iostream>
 #include <cstring>
 
-void Juego(int num_zombie);
+void Juego();
 void ingresoNombre();
-//extern int numeroZombie;
+extern int numeroZombie;
 int seleccionZombie(int numero);
 int getZombie();
 extern std::string _nombrePlayer;

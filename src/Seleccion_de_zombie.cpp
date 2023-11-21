@@ -122,7 +122,7 @@ void Seleccion_de_zombie::down()
 }
 
 
-
+/*
 void Seleccion_de_zombie::Opciones()
 {
     sf::RenderWindow window(sf::VideoMode(1220, 800), "Zombies vs PlantaZ");
@@ -172,21 +172,21 @@ Audio Sound_3e(3);
                     {
                     case 0:
                         std::cout << "Morty" <<std:: endl;
-                        //seleccionZombie(selec_z.GetPressedItem());
+                        seleccionZombie(selec_z.GetPressedItem());
                         window.close();
-                        Juego(0);
+                        Juego();
                         break;
                     case 1:
                         std::cout << "Sally" <<std:: endl;
-                        //seleccionZombie(selec_z.GetPressedItem());
+                        seleccionZombie(selec_z.GetPressedItem());
                         window.close();
-                        Juego(1);
+                        Juego();
                         break;
                     case 2:
                         std::cout << "Igor" <<std:: endl;
-                        //seleccionZombie(selec_z.GetPressedItem());
+                        seleccionZombie(selec_z.GetPressedItem());
                         window.close();
-                        Juego(2);
+                        Juego();
                         break;
                     case 3:
                         std::cout << "Menu anterior" <<std:: endl;
@@ -225,7 +225,5 @@ Audio Sound_3e(3);
 
         window.display();
     }
-
-
-
 }
+*/

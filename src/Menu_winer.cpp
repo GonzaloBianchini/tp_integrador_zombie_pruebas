@@ -96,7 +96,7 @@ void Menu_winer::right()
         menu_win[seleccion_item].setColor(sf::Color::Green);
     }
 }
-
+/*
 void Menu_winer::Opciones()
 {
     sf::RenderWindow window(sf::VideoMode(1220, 800), "Zombies vs PlantaZ");
@@ -164,4 +164,4 @@ void Menu_winer::Opciones()
 
 
 }
-
+*/

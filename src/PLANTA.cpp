@@ -1,6 +1,6 @@
-#include "PLANTA.h"
+#include "Planta.h"
 
-Planta::Planta(TIPO tipo,sf::Vector2i pos,bool look,GESTOR_DISPAROS& gestor): _gestor_disparos(gestor)
+Planta::Planta(TIPO tipo,sf::Vector2i pos,bool look,Gestor_disparos& gestor): _gestor_disparos(gestor)
 {
     //inicializo el gestor de disparos, es una condicion necesaria al haber declarado la referencia al gestor
     _type=tipo;
@@ -10,7 +10,7 @@ Planta::Planta(TIPO tipo,sf::Vector2i pos,bool look,GESTOR_DISPAROS& gestor): _g
     initVariables();
     initTexture();
     initAnimation();
-    initShooting();
+    //initShooting();
 
 }
 
@@ -78,16 +78,16 @@ sf::FloatRect Planta::getBounds() const
 {
     return _plant_sprite.getGlobalBounds();
 }
-
+/*
 void Planta::escala(float esc)
 {
     _plant_sprite.scale({esc,esc});
-}
-
+}*/
+/*
 void Planta::movement(float x,float y)
 {
     _plant_sprite.move(x,y);
-}
+}*/
 
 bool Planta::isLookingLeft()
 {
@@ -187,7 +187,7 @@ void Planta::updateAnimation()
 void Planta::updateShooting()
 {
 
-    if(_spawn_shoot_timer.getElapsedTime().asSeconds() >= 6 )            //spawneo disparos cada 3 segundos
+    if(_spawn_shoot_timer.getElapsedTime().asSeconds() >= 3 )            //spawneo disparos cada 3 segundos
     {
         //// Corrijo que el disparo salga de la boca de la planta///
         float position_shoot_x = _plant_sprite.getPosition().x;
@@ -229,9 +229,9 @@ void Planta::initTexture()
     _plant_sprite.setScale(0.11,0.11); //0.11
 }
 
-
+/*
 void Planta::initShooting()
 {
     _spawn_shoot_timer.restart();
 }
-
+*/
