@@ -55,6 +55,9 @@ void Juego2::run()      ///Estructura principal de la aplicacion
             case TIPO_MENU::GAME_OVER:
                 _tipo_menu=gameOver(window);
                 break;
+            default:
+                _tipo_menu=menuPpal(window);
+                break;
         }
     }
 }
@@ -100,7 +103,11 @@ TIPO_MENU Juego2::menuPpal(sf::RenderWindow& window)
                                     break;
                             }
                             break;
+                         default:
+                            break;
                     }
+                    break;
+                default:
                     break;
             }
             if (event.type == sf::Event::Closed)
@@ -154,7 +161,11 @@ TIPO_MENU Juego2::ranking(sf::RenderWindow& window)
                                     break;
                             }
                             break;
+                         default:
+                            break;
                     }
+                    break;
+                 default:
                     break;
             }
             if (event.type == sf::Event::Closed)
@@ -216,7 +227,11 @@ TIPO_MENU Juego2::creditos(sf::RenderWindow& window)
                                     break;
                             }
                             break;
+                        default:
+                            break;
                     }
+                    break;
+                 default:
                     break;
             }
             if (event.type == sf::Event::Closed)
@@ -276,7 +291,11 @@ TIPO_MENU Juego2::menuSecundario(sf::RenderWindow& window)
                                     break;
                             }
                             break;
+                        default:
+                            break;
                     }
+                    break;
+                 default:
                     break;
             }
             if (event.type == sf::Event::Closed)
@@ -339,7 +358,11 @@ TIPO_MENU Juego2::seleccionZombie(sf::RenderWindow& window)
                                     break;
                             }
                             break;
+                        default:
+                            break;
                     }
+                    break;
+                 default:
                     break;
             }
             if (event.type == sf::Event::Closed)
@@ -389,7 +412,11 @@ TIPO_MENU Juego2::winner(sf::RenderWindow& window)
                                     break;
                             }
                             break;
+                        default:
+                            break;
                     }
+                    break;
+                 default:
                     break;
             }
             if (event.type == sf::Event::Closed)
@@ -439,7 +466,11 @@ TIPO_MENU Juego2::gameOver(sf::RenderWindow& window)
                                     break;
                             }
                             break;
+                        default:
+                            break;
                     }
+                    break;
+                 default:
                     break;
             }
             if (event.type == sf::Event::Closed)
@@ -560,6 +591,8 @@ void Juego2::showLoserText(sf::RenderWindow& window)
 
 TIPO_MENU Juego2::aJugarHijo(Player& player, int num_zombie,sf::RenderWindow& window)
 {
+    //TIPO_MENU t=TIPO_MENU::EXIT;
+
     sf::Sprite sprite_fondo;
     sf::Texture texture_fondo;
 
@@ -615,6 +648,7 @@ TIPO_MENU Juego2::aJugarHijo(Player& player, int num_zombie,sf::RenderWindow& wi
                 }
             }
     }
+    return TIPO_MENU::EXIT;   ///Condicion trivial, no ganaste ni perdiste, pero cerraste pantalla, devuelvo EXIT
 }
 
 void Juego2::showRanking(sf::RenderWindow& window,Ranking& ranking)

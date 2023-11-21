@@ -38,10 +38,10 @@ void Menu::up()
 {
     if(_selected_item-1>=0)
     {
-        _array_textos[_selected_item].setColor(sf::Color(255,255,255,80));
+        _array_textos[_selected_item].setFillColor(sf::Color(255,255,255,80));
         _selected_item--;
 
-        _array_textos[_selected_item].setColor(sf::Color::Green);
+        _array_textos[_selected_item].setFillColor(sf::Color::Green);
     }
 }
 
@@ -49,10 +49,10 @@ void Menu::down()
 {
     if(_selected_item+1<getSizeArray())
     {
-        _array_textos[_selected_item].setColor(sf::Color(255,255,255,80));
+        _array_textos[_selected_item].setFillColor(sf::Color(255,255,255,80));
         _selected_item++;
 
-        _array_textos[_selected_item].setColor(sf::Color::Green);
+        _array_textos[_selected_item].setFillColor(sf::Color::Green);
     }
 }
 
@@ -62,9 +62,9 @@ void Menu::updateSelection()
     updateSelectedItem();
     for(sf::Text t : _array_textos)
     {
-        t.setColor(sf::Color(255,255,255,80));                  ///Des-seleccionamos todos
+        t.setFillColor(sf::Color(255,255,255,80));                  ///Des-seleccionamos todos
     }
-    _array_textos[_selected_item].setColor(sf::Color::Green);   ///Pintamos el seleccionado
+    _array_textos[_selected_item].setFillColor(sf::Color::Green);   ///Pintamos el seleccionado
 }
 
 
@@ -89,11 +89,11 @@ void Menu::agregarTexto(std::string s, int string_size, sf::Vector2f position,bo
     texto.setPosition(position);
     if(green)
     {
-        texto.setColor(sf::Color::Green);
+        texto.setFillColor(sf::Color::Green);
     }
     else
     {
-        texto.setColor(sf::Color(255,255,255,80));
+        texto.setFillColor(sf::Color(255,255,255,80));
     }
     _array_textos.push_back(texto);
 }
@@ -233,8 +233,8 @@ void Menu::initTextosSeleccionZombie()
 
 void Menu::initTextosGameOver()
 {
-    int width=1220;
-    int height=800;
+    //int width=1220;
+    //int height=800;
 
     agregarTexto("VOLVER",30,{300,685},true);
     agregarTexto("SALIR",30,{813,685},false);
