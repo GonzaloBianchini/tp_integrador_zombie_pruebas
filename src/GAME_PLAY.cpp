@@ -517,7 +517,6 @@ void Game_play::updatePlantDeletion()
 ///revisar referencia a plataformas
 void Game_play::updatePlantsSelfMovement()
 {
-
     sf::FloatRect bounds = Z1->getDraw().getGlobalBounds();
     Plataforma plataformita;
     for(Planta* plantita : _plant_manager._array_plantas)  //recorro todas las plantas
@@ -575,8 +574,9 @@ void Game_play::updatePlantsSelfMovement()
     }
 }
 
+
 ///revisar referencia a plataforma
-Plataforma Game_play::findPlatform(Planta plantita)
+Plataforma& Game_play::findPlatform(Planta& plantita)
 {
     for(Plataforma& plat: Plats)
     {
@@ -588,7 +588,7 @@ Plataforma Game_play::findPlatform(Planta plantita)
             return plat;
         }
     }
-    return Plats[0];
+    //return Plats[0];
 }
 
 

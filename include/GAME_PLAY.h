@@ -44,7 +44,7 @@ public:
     void updatePlantGeneration();
     void updatePlantDeletion();
     void updatePlantsSelfMovement();
-    Plataforma findPlatform(Planta plantita);
+    Plataforma& findPlatform(Planta& plantita);
     sf::Vector2i getRandomPosition();
     void setNombrePlayer(std::string nombre);
     bool getWinner();
