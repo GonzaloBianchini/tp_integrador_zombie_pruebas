@@ -74,13 +74,11 @@
 		<Unit filename="src/Lifebar.cpp" />
 		<Unit filename="src/Menu.cpp" />
 		<Unit filename="src/Partida.cpp" />
-		<Unit filename="src/PlantManager.cpp" />
 		<Unit filename="src/Planta.cpp" />
 		<Unit filename="src/Plataforma.cpp" />
 		<Unit filename="src/Player.cpp" />
 		<Unit filename="src/Prize.cpp" />
 		<Unit filename="src/Ranking.cpp" />
-		<Unit filename="src/ShootManager.cpp" />
 		<Unit filename="src/Zombie.cpp" />
 		<Extensions>
 			<lib_finder disable_auto="1" />

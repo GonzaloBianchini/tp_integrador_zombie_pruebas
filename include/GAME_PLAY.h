@@ -30,7 +30,6 @@ public:
     void draw(sf::RenderWindow& window);
     void cmd();
     void check_collision_platform();
-    //void updatePlants();
 
     void updateShoot(sf::RenderTarget& window);
     void updatePrize();

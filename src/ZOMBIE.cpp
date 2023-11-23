@@ -3,7 +3,7 @@
 Zombie::Zombie(int opc, Gestor_disparos& gestor): _gestor_disparos(gestor), sound_2(2), Sound_6(6)
 {
     setOpcion(opc);
-    std::cout << getOpcion()<< std::endl;
+    //std::cout << getOpcion()<< std::endl;
     segundos=sf::seconds(1.f);
     if(getOpcion()==0)
     {
@@ -68,7 +68,6 @@ void Zombie::update()
             _estado=ESTADOS::QUIETO;
             break;
         case QUIETO:
-
             _sprite_zombie.setTextureRect(sf::IntRect(0,204,51,82)); //_sprite_zombie.setTextureRect(sf::IntRect(0,189.50,65,94.75));
             if (_energiaRegen.getElapsedTime().asSeconds()>=5)
             {
@@ -589,7 +588,6 @@ void Zombie::update()
             }
         }
     }
-
 }
 
 void Zombie::update_muriendo()
@@ -652,10 +650,9 @@ void Zombie::update_muriendo()
         {
             if(getOpcion()==2)
             {
-
+                ///No hay sprite muriendo Igor XD
             }
         }
-
     }
 }
 

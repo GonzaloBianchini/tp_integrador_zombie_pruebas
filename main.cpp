@@ -1,9 +1,8 @@
 #include <SFML/Graphics.hpp>
-#include "MENU_PRINCIPAL.h"
-#include "Funciones.h"
+
 #include <iostream>
-#include<cstdlib>       //para rand y srand
-#include <ctime>        //para time
+#include <cstdlib>       //para rand y srand
+#include <ctime>         //para time
 
 #include "Menu.h"
 #include "GAME_PLAY.h"
@@ -11,6 +10,7 @@
 
 
 //using namespace std;
+
 
 int main()
 {

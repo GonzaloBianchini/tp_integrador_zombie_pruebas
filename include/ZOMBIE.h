@@ -14,7 +14,6 @@
 #include "Audio.h"
 
 
-
 class Zombie: public Colisionable//: public sf::Drawable
 {
 public:
@@ -95,10 +94,6 @@ private:
     int _energia = 100;
     int _opcion;
     //float _time_shoot;
-
-
-
-
 
 
 };

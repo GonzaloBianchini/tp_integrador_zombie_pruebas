@@ -55,7 +55,7 @@ void Prize::initTexture()
 {
     _prize_texture.loadFromFile("img/Prize.png");
     _prize_sprite.setTexture(_prize_texture);
-    _prize_sprite.setTextureRect(_current_frame);       //me quedo con un prize random
+    _prize_sprite.setTextureRect(_current_frame);       ///me quedo con un prize random
     _prize_sprite.setScale(1.85,1.85);
     _prize_sprite.setPosition(_position);
 }

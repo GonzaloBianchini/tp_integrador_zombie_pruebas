@@ -10,12 +10,12 @@ Disparo::Disparo(TIPO tipo,sf::Vector2f pos,bool direct): Sound_8(8)
     initTexture();
     initAnimation();
 }
-
+/*
 Disparo::Disparo(): Sound_8(8)
 {
 
 }
-
+*/
 Disparo::~Disparo()
 {
 
@@ -140,9 +140,9 @@ void Disparo::movement(float x, float y)
 void Disparo::updateMovement()
 {
     if(_direction)
-        _speed.x=-2;//1.5
+        _speed.x=-5;    ///2
     else if(!_direction)
-        _speed.x=2;
+        _speed.x=5;
 
     _shoot_sprite.move(_speed);
 }

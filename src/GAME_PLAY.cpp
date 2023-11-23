@@ -74,7 +74,7 @@ Game_play::Game_play(Player& player, int numZombie,sf::RenderWindow& window) : S
     std::cout<<_namePlayer<<std::endl;
     _textPlayer.setFont(_fontPlayer);
     _textPlayer.setString(_namePlayer);
-    _textPlayer.setColor(sf::Color::Red);
+    _textPlayer.setFillColor(sf::Color::Red);
     _textPlayer.setPosition(400,710);
     /*****************PUNTAJE**************************/
     puntaje = 0 ;
@@ -85,20 +85,20 @@ Game_play::Game_play(Player& player, int numZombie,sf::RenderWindow& window) : S
     std::cout<<puntaje<<std::endl;
     _textPuntaje.setFont(_fontPuntaje);
     _textPuntaje.setString(std::to_string(puntaje));
-    _textPuntaje.setColor(sf::Color::Red);
+    _textPuntaje.setFillColor(sf::Color::Red);
     _textPuntaje.setPosition(500,740);
 
     /*********************Vidas*****************/
 
     _textvidas.setFont(_fontPlayer);
     _textvidas.setString("Vidas");
-    _textvidas.setColor(sf::Color::Red);
+    _textvidas.setFillColor(sf::Color::Red);
     _textvidas.setPosition(930,710);
     /*****************vidas**************************/
 
     _cantvidas.setFont(_fontPuntaje);
     //_cantvidas.setString(std::to_string(vidas));
-    _cantvidas.setColor(sf::Color::Red);
+    _cantvidas.setFillColor(sf::Color::Red);
     _cantvidas.setPosition(940,740);
 
 
@@ -115,14 +115,14 @@ void Game_play::draw(sf::RenderWindow& window)
     window.draw(Z1->getDraw());
 
     ///Dibujo Plantas///
-    for(auto p : _plant_manager._array_plantas)
+    for(Planta* p : _plant_manager._array_plantas)
     {
         window.draw(*p);
     }
 
 
     ///Dibujo Disparos///
-    for(auto disparo : _shoot_manager._array_disparos)
+    for(Disparo* disparo : _shoot_manager._array_disparos)
     {
         window.draw(*disparo);
     }
@@ -157,7 +157,6 @@ void Game_play::cmd()
     {
         Z1->mobility();
         //...........comandos para poner en pausa el juego......
-
         if(sf::Keyboard::isKeyPressed(sf::Keyboard::P))
         {
             _estado=ESTADOS_GAME_PLAY::PAUSE;
@@ -169,7 +168,7 @@ void Game_play::cmd()
             std::cout<<"Pausa"<<std::endl;
             _text_pause.setFont(_font_pause);
             _text_pause.setString("PAUSA");
-            _text_pause.setColor(sf::Color::Red);
+            _text_pause.setFillColor(sf::Color::Red);
             _text_pause.setPosition(488,228.50);
 
         }
@@ -216,9 +215,9 @@ void Game_play::updateShoot(sf::RenderTarget& window)
         disp->update();
 
 
-        if(Z1->isCollision(*disp)&& tipoDisparo !=TIPO::BRAIN || disp->checkWindowBounds(window))
+        if((Z1->isCollision(*disp) && tipoDisparo !=TIPO::BRAIN) || (disp->checkWindowBounds(window)))
         {
-            if(Z1->isCollision(*disp)&& tipoDisparo != TIPO::BRAIN)
+            if(Z1->isCollision(*disp)&& tipoDisparo != TIPO::BRAIN) ///pregunto si el disparo saca vida o no
             {
                 _life_bar.setLifePoints(_life_bar.getLifePoints() - 1);
 
@@ -231,7 +230,7 @@ void Game_play::updateShoot(sf::RenderTarget& window)
         }
         else
         {
-            ++it;
+            it++;
         }
 
 
@@ -240,20 +239,20 @@ void Game_play::updateShoot(sf::RenderTarget& window)
     for(auto it=_plant_manager._array_plantas.begin(); it!=_plant_manager._array_plantas.end();)
     {
         Planta* planta = *it;
-        planta->update();
+        //planta->update();
         colisionPlanta = false;
         for(auto itDisparo = _shoot_manager._array_disparos.begin(); itDisparo != _shoot_manager._array_disparos.end();)
         {
             Disparo* disp = *itDisparo;
-            disp->update();
+            //disp->update();
 
             tipoDisparo = disp->getTipo();
             if(disp->isCollision(*planta)&& tipoDisparo==TIPO::BRAIN)
             {
                 colisionPlanta = true;
                 puntaje += 45;
-                itDisparo = _shoot_manager._array_disparos.erase(itDisparo);
                 delete disp;
+                itDisparo = _shoot_manager._array_disparos.erase(itDisparo);
             }
             else
             {
@@ -264,8 +263,8 @@ void Game_play::updateShoot(sf::RenderTarget& window)
         {
             Sound_7.audioON();
             enemigos_eliminados++;
-            it =_plant_manager._array_plantas.erase(it);
             delete planta;
+            it =_plant_manager._array_plantas.erase(it);
         }
         else
         {
@@ -273,7 +272,6 @@ void Game_play::updateShoot(sf::RenderTarget& window)
         }
     }
 }
-
 
 ///////////////////////////////////////
 
@@ -320,8 +318,6 @@ void Game_play::update(sf::RenderTarget& window)
                 {
 
                     Z1->update();
-
-
                 }
                 else
                 {
@@ -329,7 +325,7 @@ void Game_play::update(sf::RenderTarget& window)
                     {
                         _dead.restart();
                     }
-                    if(_life_bar.getLifePoints()==0&&_dead.getElapsedTime().asSeconds()<1.5)
+                    if(_life_bar.getLifePoints()==0  &&  _dead.getElapsedTime().asSeconds()<1.5)
                     {
 
                         Z1->update_muriendo();
@@ -337,7 +333,7 @@ void Game_play::update(sf::RenderTarget& window)
 
                     }
 
-                    if(_is_dead==true&&_dead.getElapsedTime().asSeconds()>1.5)
+                    if(_is_dead==true  &&  _dead.getElapsedTime().asSeconds()>1.5)
                     {
 
                         _dead.restart();
@@ -346,7 +342,7 @@ void Game_play::update(sf::RenderTarget& window)
                 }
 
             }
-            if(_is_dead==true&&_life_bar.getLifePoints()==0 && _dead.getElapsedTime().asSeconds()>1.5)
+            if(_is_dead==true  &&  _life_bar.getLifePoints()==0  &&  _dead.getElapsedTime().asSeconds()>1.5)
             {
                 _is_dead=false;
                 _life_bar.setLifePoints(5);
@@ -358,7 +354,7 @@ void Game_play::update(sf::RenderTarget& window)
                 vidas=Z1->getvida();
                 _game_over=false;
             }
-            else///POR ACA LAS PARTIDAS GONZOO, revisar!
+            else    /// Guardamos partida si nos quedamos sin vidas
             {
                 vidas=Z1->getvida();
                 Partida partida(puntaje, _namePlayer);
@@ -375,7 +371,7 @@ void Game_play::update(sf::RenderTarget& window)
 
             }
                 //std::cout<<"enemi"<< getEnemigos_eliminados();
-                ///WIN CONDITION
+                ///WIN CONDITION, guardo partida tambien
             if(getEnemigos_eliminados() == 10)
             {
                 //std::cout<<"enemigos"<< getEnemigos_eliminados();
@@ -396,20 +392,20 @@ void Game_play::update(sf::RenderTarget& window)
             //////////////////////////
 
 
-            if(Z1->gettimeshoot() > 2.0)
+            if(Z1->gettimeshoot() > 2.0)    ///tiempo de recarga de tiro
             {
                 _energy_bar.setEnergyPoints(5);
 
             }
             else
             {
-                if(Z1->gettimeshoot()>= 0.0&&Z1->gettimeshoot()< 0.4)
+                if(Z1->gettimeshoot()>= 0.0 && Z1->gettimeshoot()< 0.4)
                 {
                     _energy_bar.setEnergyPoints(0);
                 }
                 else
                 {
-                    if(Z1->gettimeshoot()> 0.4&&Z1->gettimeshoot()< 0.8)
+                    if(Z1->gettimeshoot()> 0.4  &&  Z1->gettimeshoot()< 0.8)
                     {
                         _energy_bar.setEnergyPoints(1);
                     }
@@ -436,28 +432,23 @@ void Game_play::update(sf::RenderTarget& window)
                     }
                 }
             }
-
+            ///Update de elementos
             updatePrize();
             _life_bar.update();
             _energy_bar.update();
             updatePlants2();
             updateShoot(window);
 
-
+            ///update puntaje y vidas
             _textPuntaje.setString(std::to_string(puntaje));
             _cantvidas.setString(std::to_string(vidas));
+
 
             if(Z1->getDraw().getPosition().y>490) //485 Suelo... limite de caida
             {
                 Z1->suelo(Z1->getDraw().getPosition().x,490);
             }
-            ///VER SI ESTE FOR ES NECESARIO, NO HAY UPDATE
-            /*
-            for(PLATAFORMA& Plat_1: Plats)      //Recorro las plataformas ya creadas y no hago copias
-            {
-                Plat_1.update();
-            }
-            */
+
             check_collision_platform();
         }
     }
@@ -471,7 +462,7 @@ void Game_play::updatePlants2()
 {
 
     updatePlantGeneration();
-    updatePlantDeletion();
+    updatePlantDeletion();  ///aca se borran y/o actualizan
     updatePlantsSelfMovement();
 }
 
@@ -482,7 +473,7 @@ void Game_play::updatePlantGeneration()
     _random_type=TIPO(rand() % 4);   //Genero un tipo aleatorio, casteo a TIPO
     bool look=rand()% 2;
 
-    if(_plant_manager._array_plantas.size() <= 6&& enemigos<=20)   //define la cantidad de plantas en pantalla y condicion de winner
+    if(_plant_manager._array_plantas.size() < 4  &&  enemigos<=20)   //define la cantidad de plantas en pantalla y condicion de winner
     {
 
         if(_plant_spawn_timer.getElapsedTime().asSeconds() >= 1.5)    //spawneo cada 3 seg
@@ -523,7 +514,7 @@ void Game_play::updatePlantDeletion()
         }
     }
 }
-
+///revisar referencia a plataformas
 void Game_play::updatePlantsSelfMovement()
 {
 
@@ -534,14 +525,14 @@ void Game_play::updatePlantsSelfMovement()
 
 
         plataformita=findPlatform(*plantita);
-        if(plantita->getPosition().y==500&&plantita->getPosition().x>bounds.left)   //pregunto si esta en el suelo no se mueve y ya
+        if(plantita->getPosition().y==500  &&  plantita->getPosition().x>bounds.left)   ///pregunto si esta en el suelo no se mueve y ya
         {
             plantita->setCanMove(false);
             plantita->setLookingLeft(true);
         }
         else
         {
-            if(plantita->getPosition().y==500&&plantita->getPosition().x<bounds.left)   //pregunto si esta en el suelo no se mueve y ya
+            if(plantita->getPosition().y==500 && plantita->getPosition().x<bounds.left)   //pregunto si esta en el suelo no se mueve y ya
             {
                 plantita->setCanMove(false);
                 plantita->setLookingLeft(false);
@@ -555,12 +546,12 @@ void Game_play::updatePlantsSelfMovement()
             }
 
         }
-        if(plantita->getPosition().x>bounds.left&&bounds.left+150>plantita->getPosition().x&&plantita->getPosition().y<bounds.top+20&&plantita->getPosition().y>bounds.top-20&&plantita->getPosition().y!=500)   //pregunto si esta en el suelo no se mueve y ya
+        if(plantita->getPosition().x>bounds.left && bounds.left+150>plantita->getPosition().x && plantita->getPosition().y<bounds.top+20 && plantita->getPosition().y>bounds.top-20&&plantita->getPosition().y!=500)   //pregunto si esta en el suelo no se mueve y ya
         {
             plantita->setCanMove(false);
             plantita->setLookingLeft(true);
 
-            plantita->updateShooting();
+            //plantita->updateShooting();
 
         }
         else
@@ -569,7 +560,7 @@ void Game_play::updatePlantsSelfMovement()
             {
                 plantita->setCanMove(false);
                 plantita->setLookingLeft(false);
-                plantita->updateShooting();
+                //plantita->updateShooting();
 
             }
             else
@@ -584,7 +575,7 @@ void Game_play::updatePlantsSelfMovement()
     }
 }
 
-
+///revisar referencia a plataforma
 Plataforma Game_play::findPlatform(Planta plantita)
 {
     for(Plataforma& plat: Plats)
@@ -608,8 +599,6 @@ sf::Vector2i Game_play::getRandomPosition()
 
     _position.insert(_position.begin(),pos);         //pongo al principio del vector el elemento que me interesa
     _position.pop_back();                            //saco el ultimo elemento del array
-
-
 
     return pos;
 }

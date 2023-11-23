@@ -3510,10 +3510,8 @@
 1699929632 source:c:\users\54911\documents\github\tp_version_gonzo\tp_integrador_zombie-master\src\menu_principal.cpp
 	"MENU_PRINCIPAL.h"
 
-1700026666 source:c:\users\54911\documents\github\tp_integrador_zombie_pruebas\main.cpp
+1700700443 source:c:\users\54911\documents\github\tp_integrador_zombie_pruebas\main.cpp
 	<SFML/Graphics.hpp>
-	"MENU_PRINCIPAL.h"
-	"Funciones.h"
 	<iostream>
 	<cstdlib>
 	<ctime>
@@ -4069,7 +4067,7 @@
 	"SubMenu.h"
 	"ZOMBIE.h"
 
-1700158693 c:\users\54911\documents\github\tp_integrador_zombie_pruebas\include\zombie.h
+1700597733 c:\users\54911\documents\github\tp_integrador_zombie_pruebas\include\zombie.h
 	<iostream>
 	<SFML/Graphics.hpp>
 	<SFML/Audio.hpp>
@@ -4089,7 +4087,7 @@
 	"Audio.h"
 	"Colisionable.h"
 
-1700158559 c:\users\54911\documents\github\tp_integrador_zombie_pruebas\include\gestor_disparos.h
+1700597265 c:\users\54911\documents\github\tp_integrador_zombie_pruebas\include\gestor_disparos.h
 	<vector>
 	"DISPARO.h"
 
@@ -4104,7 +4102,7 @@
 	<iostream>
 	"MENU_PRINCIPAL.h"
 
-1699928264 source:c:\users\54911\documents\github\tp_integrador_zombie_pruebas\src\audio.cpp
+1700707010 source:c:\users\54911\documents\github\tp_integrador_zombie_pruebas\src\audio.cpp
 	"Audio.h"
 
 1699928264 source:c:\users\54911\documents\github\tp_integrador_zombie_pruebas\src\colisionable.cpp
@@ -4114,18 +4112,18 @@
 1700149595 source:c:\users\54911\documents\github\tp_integrador_zombie_pruebas\src\creditos.cpp
 	"Creditos.h"
 
-1700149748 source:c:\users\54911\documents\github\tp_integrador_zombie_pruebas\src\disparo.cpp
+1700705601 source:c:\users\54911\documents\github\tp_integrador_zombie_pruebas\src\disparo.cpp
 	"Disparo.h"
 
 1699928264 source:c:\users\54911\documents\github\tp_integrador_zombie_pruebas\src\energybar.cpp
 	"EnergyBar.h"
 
-1700187536 source:c:\users\54911\documents\github\tp_integrador_zombie_pruebas\src\game_play.cpp
+1700707491 source:c:\users\54911\documents\github\tp_integrador_zombie_pruebas\src\game_play.cpp
 	<iostream>
 	"Game_play.h"
 	"Partida.h"
 
-1700158494 c:\users\54911\documents\github\tp_integrador_zombie_pruebas\include\game_play.h
+1700701002 c:\users\54911\documents\github\tp_integrador_zombie_pruebas\include\game_play.h
 	<random>
 	<iostream>
 	<SFML/Graphics.hpp>
@@ -4147,7 +4145,7 @@
 	<SFML/Graphics.hpp>
 	"Colisionable.h"
 
-1700158589 c:\users\54911\documents\github\tp_integrador_zombie_pruebas\include\planta.h
+1700599492 c:\users\54911\documents\github\tp_integrador_zombie_pruebas\include\planta.h
 	<iostream>
 	<SFML/Graphics.hpp>
 	"Colisionable.h"
@@ -4210,7 +4208,7 @@
 	<iostream>
 	"MENU_PRINCIPAL.h"
 
-1699928264 source:c:\users\54911\documents\github\tp_integrador_zombie_pruebas\src\lifebar.cpp
+1700705955 source:c:\users\54911\documents\github\tp_integrador_zombie_pruebas\src\lifebar.cpp
 	"Lifebar.h"
 
 1700149607 source:c:\users\54911\documents\github\tp_integrador_zombie_pruebas\src\menu_game_over.cpp
@@ -4219,7 +4217,7 @@
 1700149617 source:c:\users\54911\documents\github\tp_integrador_zombie_pruebas\src\menu_winer.cpp
 	"Menu_winer.h"
 
-1700152684 source:c:\users\54911\documents\github\tp_integrador_zombie_pruebas\src\planta.cpp
+1700702293 source:c:\users\54911\documents\github\tp_integrador_zombie_pruebas\src\planta.cpp
 	"Planta.h"
 
 1699928264 source:c:\users\54911\documents\github\tp_integrador_zombie_pruebas\src\plantmanager.cpp
@@ -4255,7 +4253,7 @@
 	<iostream>
 	"Player.h"
 
-1699928264 source:c:\users\54911\documents\github\tp_integrador_zombie_pruebas\src\prize.cpp
+1700706167 source:c:\users\54911\documents\github\tp_integrador_zombie_pruebas\src\prize.cpp
 	"Prize.h"
 
 1700149548 source:c:\users\54911\documents\github\tp_integrador_zombie_pruebas\src\seleccion_de_zombie.cpp
@@ -4270,13 +4268,13 @@
 1700149567 source:c:\users\54911\documents\github\tp_integrador_zombie_pruebas\src\submenu.cpp
 	"SubMenu.h"
 
-1700189896 source:c:\users\54911\documents\github\tp_integrador_zombie_pruebas\src\zombie.cpp
+1700700219 source:c:\users\54911\documents\github\tp_integrador_zombie_pruebas\src\zombie.cpp
 	"Zombie.h"
 
 1700149582 source:c:\users\54911\documents\github\tp_integrador_zombie_pruebas\src\menu_principal.cpp
 	"MENU_PRINCIPAL.h"
 
-1700188816 source:c:\users\54911\documents\github\tp_integrador_zombie_pruebas\src\menu.cpp
+1700596435 source:c:\users\54911\documents\github\tp_integrador_zombie_pruebas\src\menu.cpp
 	"Menu.h"
 
 1700596080 c:\users\54911\documents\github\tp_integrador_zombie_pruebas\include\menu.h
@@ -4287,11 +4285,12 @@
 	<SFML/Audio.hpp>
 	"Audio.h"
 
-1700596166 source:c:\users\54911\documents\github\tp_integrador_zombie_pruebas\src\juego2.cpp
+1700707010 source:c:\users\54911\documents\github\tp_integrador_zombie_pruebas\src\juego2.cpp
 	"Juego2.h"
 
-1700585790 c:\users\54911\documents\github\tp_integrador_zombie_pruebas\include\juego2.h
+1700706787 c:\users\54911\documents\github\tp_integrador_zombie_pruebas\include\juego2.h
 	<SFML/Graphics.hpp>
+	<SFML/Audio.hpp>
 	"Menu.h"
 	"Player.h"
 	"Game_play.h"

@@ -2,6 +2,7 @@
 #define JUEGO2_H
 
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 
 #include "Menu.h"
 #include "Player.h"

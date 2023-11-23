@@ -663,7 +663,7 @@ void Juego2::showRanking(sf::RenderWindow& window,Ranking& ranking)
     {
         text[i].setFont(font);
         text[i].setCharacterSize(15);
-        text[i].setColor(sf::Color::Magenta);
+        text[i].setFillColor(sf::Color::Magenta);
 
         text[i].setString("Puesto: "+ std::to_string(i+1)+ " " +p[i].getName()+ " Con " +std::to_string(p[i].getPuntos())+ " Puntos");
         text[i].setPosition(100, 100 + i* 40);
